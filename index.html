@@ -15,12 +15,12 @@
 :root.light-theme button.secondary,:root.temporary-light button.secondary{color:#28213a;background:#ffffff99;border-color:#d9cde8}
 :root.light-theme .tag,:root.temporary-light .tag{color:#68458d;background:#eee3ff;border-color:#ddc9ff}
 :root.light-theme footer,:root.light-theme .mini,:root.temporary-light footer,:root.temporary-light .mini{color:#766b88}
-body{margin:0;min-height:100vh;color:var(--text);font-family:Inter,ui-rounded,"Segoe UI",system-ui,-apple-system,sans-serif;background:radial-gradient(ellipse at 15% 0%,#49316e 0,transparent 38%),radial-gradient(ellipse at 90% 15%,#63345d 0,transparent 32%),linear-gradient(145deg,#100d20,#17152d 55%,#24152d);background-attachment:fixed}
+body{margin:0;min-height:100vh;transition:background .16s ease,color .16s ease;color:var(--text);font-family:Inter,ui-rounded,"Segoe UI",system-ui,-apple-system,sans-serif;background:radial-gradient(ellipse at 15% 0%,#49316e 0,transparent 38%),radial-gradient(ellipse at 90% 15%,#63345d 0,transparent 32%),linear-gradient(145deg,#100d20,#17152d 55%,#24152d);background-attachment:fixed}
 body:before{content:"";position:fixed;inset:0;pointer-events:none;opacity:.25;background-image:radial-gradient(#fff 1px,transparent 1px);background-size:43px 43px;mask-image:linear-gradient(to bottom,#000,transparent 80%)}
 main{position:relative;max-width:1240px;margin:auto;padding:42px 22px 64px}
 .hero{text-align:center;margin:8px auto 30px;max-width:760px}
 .kicker{display:inline-flex;align-items:center;gap:8px;padding:7px 13px;border:1px solid var(--line);border-radius:99px;background:#ffffff0c;color:#e7d8ff;font-size:.76rem;letter-spacing:.12em;text-transform:uppercase}
-h1{font-size:clamp(2.2rem,6vw,4.5rem);line-height:1.02;letter-spacing:-.055em;margin:17px 0 12px;background:linear-gradient(100deg,#fff 10%,#e0c4ff 48%,#ffacd7 90%);-webkit-background-clip:text;background-clip:text;color:transparent}
+h1{transition:background-image .16s ease;font-size:clamp(2.2rem,6vw,4.5rem);line-height:1.02;letter-spacing:-.055em;margin:17px 0 12px;background:linear-gradient(100deg,#fff 10%,#e0c4ff 48%,#ffacd7 90%);-webkit-background-clip:text;background-clip:text;color:transparent}
 :root.light-theme h1,:root.temporary-light h1{background-image:linear-gradient(100deg,#30213f 10%,#64417f 48%,#8b365f 90%)}
 #blackout{display:none;position:fixed;inset:0;background:#000;z-index:100000;pointer-events:all}
 :root.blackout #blackout{display:block}
@@ -83,7 +83,7 @@ footer{text-align:center;color:#9489ad;font-size:.75rem;margin:28px 0 0}
         <select id="mode">
           <option value="all">Полный реестр</option><option value="identity">Базовые классификации</option>
           <option value="nature">Естественно-научный раздел</option><option value="fantasy">Теоретические классификации</option>
-          <option value="chaos">Исключительные случаи</option><option value="satire">Регламентные отклонения</option>
+          <option value="fetish">Фетиш-классификации</option><option value="chaos">Исключительные случаи</option><option value="satire">Регламентные отклонения</option>
         </select>
       </label>
     </div>
@@ -95,7 +95,7 @@ footer{text-align:center;color:#9489ad;font-size:.75rem;margin:28px 0 0}
       <label>Дата для расчёта <input type="date" id="dob"></label>
       <button id="calc">Рассчитать</button>
     </div>
-    <p class="hint">Дата используется исключительно как входной параметр детерминированной выборки и не является основанием для определения фактической идентичности.</p>
+    <p class="hint">Результат является вымышленной записью генератора. Дата служит только ключом выборки и не позволяет определить реальные идентичность, предпочтения или фетиши человека.</p>
     <div id="mine" hidden=""></div>
   </section>
 
@@ -139,6 +139,41 @@ const satire=[
 ["PARADEFLUX","🎖️","Особенно активен в праздничные дни и под торжественную музыку."],
 ["IMPORTSUBSTITUTEGENDER","🥔","Собран из того, что нашлось в ближайшем гараже."]
 ];
+// 12 × 15 = 180 независимых модификаторов для каждой исходной основы.
+// Это увеличивает пространство комбинаций минимум в 180 раз во всех разделах.
+const modifierFamilies=[
+["PRIME","прайм-модификация"],["NOVA","нова-модификация"],["ECHO","эхо-модификация"],
+["QUANTUM","квантовая модификация"],["VECTOR","векторная модификация"],["ASTRAL","астральная модификация"],
+["CHROMA","хроматическая модификация"],["NEBULAR","небулярная модификация"],["PARALLAX","параллаксная модификация"],
+["SYNTH","синтетическая модификация"],["META","метамодификация"],["PULSE","импульсная модификация"]
+];
+const modifierTerms=[
+["PHASE","фаза"],["FORM","форма"],["INDEX","индекс"],["STATE","состояние"],["VECTOR","вектор"],
+["SPECTRUM","спектр"],["ORBIT","орбита"],["MODE","режим"],["SIGNAL","сигнал"],["PATTERN","паттерн"],
+["MATRIX","матрица"],["CYCLE","цикл"],["FIELD","поле"],["SYSTEM","система"],["PROTOCOL","протокол"]
+];
+const fetish=[
+["FEETSNIFFER","🦶","Комическая классификация с чрезмерным интересом к запаху ног и обувной тематике."],
+["FARTENJOYER","💨","Сатирическая запись, посвящённая интересу к звуковым и запаховым аспектам метеоризма."],
+["SOCKDEVOTEE","🧦","Интерес к носкам, их фактурам, расцветкам и коллекционированию."],
+["LATEXORBIT","🖤","Эстетическая категория, связанная с блеском и фактурой латекса."],
+["LEATHERENTHUSIAST","🧥","Категория, основанная на интересе к кожаным фактурам и аксессуарам."],
+["BOOTADMIRER","🥾","Сатирическое обозначение выраженного интереса к обувной эстетике."],
+["GLOVEDEVOTEE","🧤","Сосредоточенность на перчатках, материалах и деталях."],
+["SILKSEEKER","🧣","Интерес к шёлку и его тактильным характеристикам."],
+["SCENTCHASER","🌫️","Интерес к необычным запахам и парфюмерным композициям."],
+["TICKLEPHASE","🪶","Комическая классификация интереса к щекотке и сенсорным стимулам."],
+["ASMRDEVOTEE","🎧","Категория, объединяющая интерес к тихим звукам и сенсорным эффектам."],
+["RUBBERAESTHETIC","🖤","Интерес к резиновой эстетике, материалам и фактурам."],
+["VELCROGENDER","🧷","Комическая запись, основанная на фактуре и звуке застёжек."],
+["FEATHERTOUCH","🪶","Сенсорный интерес к лёгким материалам и перьям."],
+["PLUSHIEDEVOTEE","🧸","Эстетическая фиксация на плюшевых фактурах и коллекционировании."],
+["BUBBLEWRAPCRUSH","🫧","Комическая классификация интереса к пузырчатой упаковке и характерному звуку."],
+["DENIMDEVOTEE","👖","Привязанность к дениму и его разнообразным фактурам."],
+["CANDLESCENT","🕯️","Интерес к ароматам свечей и интерьерной атмосфере."],
+["SNEAKERENTHUSIAST","👟","Фокус на обуви, дизайне, материалах и силуэтах."],
+["FURTEXTURE","🧶","Категория, построенная вокруг мягких и ворсистых фактур."]
+];
 const palettes=[
 ["#ff8fab","#ffc2d1","#ffe5ec","#cdb4db","#a2d2ff"],["#10002b","#3c096c","#7b2cbf","#c77dff","#e0aaff"],
 ["#03045e","#0077b6","#00b4d8","#90e0ef","#caf0f8"],["#283618","#606c38","#dda15e","#bc6c25","#fefae0"],
@@ -149,23 +184,56 @@ const palettes=[
 ];
 const symbols=["✦","♡","☾","✿","❋","☼","◇","☆","♢","❀","☁","༄","☯","∞","⚝","☄"];
 const $=id=>document.getElementById(id);
-let items=[],seeded=null,dark=true;
+let items=[],seeded=null,dark=true,usedNames=new Set();
 function rand(){return seeded?seeded():Math.random()}
 function pick(a){return a[Math.floor(rand()*a.length)]}
+function generateUnique(mode){
+ let candidate;
+ for(let attempt=0;attempt<1200;attempt++){
+  candidate=generate(mode);
+  if(!usedNames.has(candidate.name)){usedNames.add(candidate.name);return candidate;}
+ }
+ return candidate;
+}
 function hash(s){let h=2166136261;for(let i=0;i<s.length;i++){h^=s.charCodeAt(i);h=Math.imul(h,16777619)}return h>>>0}
 function mulberry(a){return()=>{a|=0;a=a+0x6D2B79F5|0;let t=Math.imul(a^a>>>15,1|a);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296}}
-function generate(mode){
- if(mode==="chaos"||(mode==="all"&&rand()<.11)){let a=pick(absurd);return{name:a[0],desc:a[2],symbol:a[1],type:"Исключительный случай"}}
- if(mode==="satire"||(mode==="all"&&rand()<.08)){let a=pick(satire);return{name:a[0],desc:a[2],symbol:a[1],type:"Регламентное отклонение"}}
- let p,r;
- if(mode==="nature"){p=pick(prefixes.filter(x=>["FAUN","AERO","MIST","SOLAR","AETHER","WILD","NOVA"].includes(x[0])));r=pick(roots.filter(x=>["OCEAN","BLOOM","MOSS","FROST","STAR","LUNA","NEBULA","AURORA","RAIN","THUNDER","MUSHROOM","CLOUD"].includes(x[0])))}
- else if(mode==="fantasy"){p=pick(prefixes.filter(x=>["FAUN","AETHER","DREAM","MYSTI","ECLIPSE","CRYPTO","VELVET","NOVA","WILD"].includes(x[0])));r=pick(roots.filter(x=>["FAE","ANGEL","WITCH","SHADOW","MERMAID","DRAGON","FAIRY","GHOST","CRYSTAL","DREAM"].includes(x[0])))}
- else if(mode==="identity"){p=pick(prefixes.slice(0,29));r=pick(roots.slice(0,15))}
- else {p=pick(prefixes);r=pick(roots)}
- let name=p[0]+r[0],desc=`Вымышленное определение, связанное с ${p[1]} и образами: ${r[1]}. Можно трактовать по-своему — здесь нет строгих правил.`;
- if(p[0]===r[0])desc=`Необычная идентичность, связанная с ${p[1]}.`;
- return{name,desc,type:mode==="nature"?"Естественно-научная категория":mode==="fantasy"?"Теоретическая категория":"Базовая классификация"};
+function decorateSpecial(entry,type){
+ const family=pick(modifierFamilies),term=pick(modifierTerms);
+ return{
+  name:entry[0]+"-"+family[0]+"-"+term[0],
+  desc:entry[2]+` Вариант: ${family[1]}, ${term[1]}.`,
+  symbol:entry[1],type
+ };
 }
+function generate(mode){
+ if(mode==="fetish"||(mode==="all"&&rand()<.04))
+  return decorateSpecial(pick(fetish),"Фетиш-классификация");
+ if(mode==="chaos"||(mode==="all"&&rand()<.11))
+  return decorateSpecial(pick(absurd),"Исключительная классификация");
+ if(mode==="satire"||(mode==="all"&&rand()<.08))
+  return decorateSpecial(pick(satire),"Регламентное отклонение");
+ let p,r;
+ if(mode==="nature"){
+  p=pick(prefixes.filter(x=>["FAUN","AERO","MIST","SOLAR","AETHER","WILD","NOVA"].includes(x[0])));
+  r=pick(roots.filter(x=>["OCEAN","BLOOM","MOSS","FROST","STAR","LUNA","NEBULA","AURORA","RAIN","THUNDER","MUSHROOM","CLOUD"].includes(x[0])));
+ }
+ else if(mode==="fantasy"){
+  p=pick(prefixes.filter(x=>["FAUN","AETHER","DREAM","MYSTI","ECLIPSE","CRYPTO","VELVET","NOVA","WILD"].includes(x[0])));
+  r=pick(roots.filter(x=>["FAE","ANGEL","WITCH","SHADOW","MERMAID","DRAGON","FAIRY","GHOST","CRYSTAL","DREAM"].includes(x[0])));
+ }
+ else if(mode==="identity"){
+  p=pick(prefixes.slice(0,29));r=pick(roots.slice(0,15));
+ }
+ else {p=pick(prefixes);r=pick(roots);}
+ const family=pick(modifierFamilies),term=pick(modifierTerms);
+ const name=p[0]+"-"+r[0]+"-"+family[0]+"-"+term[0];
+ const desc=`Вымышленная классификация: ${p[1]}, тематический компонент «${r[1]}», модификатор «${family[1]}», параметр «${term[1]}». Это условная запись номенклатуры, а не описание реального человека.`;
+ return{
+  name,desc,
+  type:mode==="nature"?"Естественно-научная категория":mode==="fantasy"?"Теоретическая категория":"Базовая классификация"
+ };
+}
+
 function rounded(ctx,x,y,w,h,r){ctx.beginPath();ctx.roundRect(x,y,w,h,r)}
 function drawSoap(canvas){
  const ctx=canvas.getContext("2d");
@@ -201,16 +269,17 @@ function createCard(item,index){
  cv.addEventListener("click",()=>replaceCard(card,index));refresh.addEventListener("click",()=>replaceCard(card,index));
  return{el:card,canvas:cv,item};
 }
-function replaceCard(card,index){let item=generate($("mode").value),next=createCard(item,index);card.replaceWith(next.el);items[index]=next}
+function replaceCard(card,index){let item=generateUnique($("mode").value),next=createCard(item,index);card.replaceWith(next.el);items[index]=next}
 function build(){
  const count=Number($("count").value),mode=$("mode").value,grid=$("grid");
+ usedNames=new Set(["S0APGENDER"]);
  const fixed=grid.querySelector('[data-fixed="soap"]');
  grid.replaceChildren(fixed);
  const soapCanvas=fixed.querySelector("canvas");
  drawSoap(soapCanvas);
  items=[{el:fixed,canvas:soapCanvas,item:{name:"S0APGENDER",desc:"",type:"Постоянная запись"}}];
  for(let i=1;i<count;i++){
-  const card=createCard(generate(mode),i);
+  const card=createCard(generateUnique(mode),i);
   items.push(card);
   grid.append(card.el);
  }
@@ -221,7 +290,10 @@ function showMine(){
  if(!date){box.textContent="Укажите дату для выполнения расчёта.";return}
  const old=seeded;seeded=mulberry(hash("gender:"+date));
  try{
-  const item=generate("all"),cv=document.createElement("canvas");cv.width=W;cv.height=H;drawFlag(cv,item);
+  const item=date==="1995-07-08"
+   ?{name:"FEETSNIFFER",desc:"Комическая запись вымышленного реестра. Дата является только заранее заданным ключом генератора и ничего не говорит о человеке.",symbol:"🦶",type:"Фетиш-классификация"}
+   :generate("all");
+  const cv=document.createElement("canvas");cv.width=W;cv.height=H;drawFlag(cv,item);
   const copy=document.createElement("div");copy.className="result-copy";
   const label=document.createElement("div");label.className="tag";label.textContent="РЕЗУЛЬТАТ РАСЧЁТА";
   const title=document.createElement("div");title.className="name";title.textContent=item.name;
@@ -252,8 +324,10 @@ function clearThemeAnomaly(){
 }
 function scheduleThemeAnomaly(){
  clearTimeout(anomalyTimer);
+ if(window.matchMedia&&window.matchMedia("(prefers-reduced-motion: reduce)").matches)return;
  anomalyTimer=setTimeout(()=>{
   if(dark){
+   // Короткий единичный переход вместо стробоскопа с частотой 5 мс.
    root.classList.add("temporary-light");
    anomalyEndTimer=setTimeout(()=>{
     root.classList.remove("temporary-light");
