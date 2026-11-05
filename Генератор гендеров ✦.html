@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<!-- saved from url=(0031)https://gender.oxd.duckdns.org/ -->
+<html lang="ru"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#171329">
+<title>Генератор гендеров ✦</title>
+<style>
+:root{color-scheme:dark;--bg:#100d20;--panel:rgba(31,25,54,.78);--panel2:#211b3b;--text:#f8f5ff;--muted:#b9b0d2;--line:rgba(255,255,255,.13);--accent:#c5a4ff;--pink:#ff9bcf;--shadow:0 18px 55px rgba(0,0,0,.28)}
+*{box-sizing:border-box}
+:root.light-theme{color-scheme:light;--text:#28213a;--muted:#665d78;--line:rgba(52,35,75,.18);--panel:rgba(255,255,255,.78);--panel2:#fff;--shadow:0 18px 55px rgba(57,35,85,.12)}
+:root.light-theme body{background:radial-gradient(ellipse at 15% 0%,#e5d5ff 0,transparent 38%),radial-gradient(ellipse at 90% 15%,#ffd9eb 0,transparent 32%),linear-gradient(145deg,#fbf8ff,#f4efff 55%,#fff1f7)}
+:root.light-theme .kicker{color:#60427e;background:#ffffff99}
+:root.light-theme select,:root.light-theme input{background:#fff;color:#28213a;border-color:#d9cde8}
+:root.light-theme button.secondary{color:#28213a;background:#ffffff99;border-color:#d9cde8}
+:root.light-theme .tag{color:#68458d;background:#eee3ff;border-color:#ddc9ff}
+:root.light-theme footer,:root.light-theme .mini{color:#766b88}
+body{margin:0;min-height:100vh;color:var(--text);font-family:Inter,ui-rounded,"Segoe UI",system-ui,-apple-system,sans-serif;background:radial-gradient(ellipse at 15% 0%,#49316e 0,transparent 38%),radial-gradient(ellipse at 90% 15%,#63345d 0,transparent 32%),linear-gradient(145deg,#100d20,#17152d 55%,#24152d);background-attachment:fixed}
+body:before{content:"";position:fixed;inset:0;pointer-events:none;opacity:.25;background-image:radial-gradient(#fff 1px,transparent 1px);background-size:43px 43px;mask-image:linear-gradient(to bottom,#000,transparent 80%)}
+main{position:relative;max-width:1240px;margin:auto;padding:42px 22px 64px}
+.hero{text-align:center;margin:8px auto 30px;max-width:760px}
+.kicker{display:inline-flex;align-items:center;gap:8px;padding:7px 13px;border:1px solid var(--line);border-radius:99px;background:#ffffff0c;color:#e7d8ff;font-size:.76rem;letter-spacing:.12em;text-transform:uppercase}
+h1{font-size:clamp(2.2rem,6vw,4.5rem);line-height:1.02;letter-spacing:-.055em;margin:17px 0 12px;background:linear-gradient(100deg,#fff 10%,#e0c4ff 48%,#ffacd7 90%);-webkit-background-clip:text;background-clip:text;color:transparent}
+.sub{color:var(--muted);font-size:1rem;line-height:1.6;margin:0 auto;max-width:620px}
+.toolbar,.panel{border:1px solid var(--line);background:var(--panel);backdrop-filter:blur(18px);box-shadow:var(--shadow);border-radius:22px}
+.toolbar{padding:17px;display:flex;gap:12px;align-items:center;justify-content:space-between;flex-wrap:wrap;margin-bottom:18px}
+.controls{display:flex;gap:9px;flex-wrap:wrap;align-items:center}
+button,select,input{font:inherit}
+button{border:0;border-radius:13px;padding:11px 16px;color:#20162e;background:linear-gradient(110deg,#e2c5ff,#ffb9dc);font-weight:750;cursor:pointer;transition:transform .18s,filter .18s,box-shadow .18s}
+button:hover{transform:translateY(-2px);filter:brightness(1.07);box-shadow:0 8px 24px #d49cff33}
+button.secondary{color:var(--text);background:#ffffff0c;border:1px solid var(--line);font-weight:600}
+button:active{transform:translateY(0)}
+select,input{background:#17132a;color:var(--text);border:1px solid var(--line);border-radius:11px;padding:10px 12px;outline:none}
+select:focus,input:focus{border-color:#c5a4ff;box-shadow:0 0 0 3px #c5a4ff22}
+label{font-size:.85rem;color:var(--muted);display:flex;gap:8px;align-items:center}
+.panel{padding:19px;margin:18px 0 23px}
+.panel-head{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:13px}
+.panel h2{font-size:1rem;margin:0}
+.hint{font-size:.8rem;color:var(--muted);line-height:1.5;margin:10px 0 0}
+#mine{display:flex;align-items:center;gap:15px;flex-wrap:wrap;margin-top:14px}
+#mine canvas{width:min(260px,100%);border-radius:14px}
+#mine .result-copy{max-width:500px}
+#grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,230px),1fr));gap:17px}
+.card{min-width:0;padding:12px;border:1px solid var(--line);border-radius:18px;background:linear-gradient(155deg,#ffffff0e,#ffffff05);transition:transform .2s,border-color .2s,background .2s;animation:rise .35s both}
+.card:hover{transform:translateY(-4px);border-color:#d5b7ff88;background:#ffffff12}
+.card canvas{display:block;width:100%;height:auto;aspect-ratio:13/8;border-radius:12px;cursor:pointer;box-shadow:0 7px 20px #0003}
+.name{font-size:.91rem;font-weight:800;letter-spacing:.025em;overflow-wrap:anywhere;margin:11px 2px 5px}
+.desc{font-size:.78rem;color:var(--muted);line-height:1.48;margin:0 2px 4px}
+.card-foot{display:flex;align-items:center;justify-content:space-between;margin:10px 2px 1px;gap:8px}
+.tag{font-size:.67rem;color:#e7d7ff;background:#b48bff20;border:1px solid #c5a4ff30;padding:4px 8px;border-radius:99px}
+.mini{font-size:.7rem;color:#cfc4e6}
+.empty{grid-column:1/-1;text-align:center;padding:40px;color:var(--muted)}
+footer{text-align:center;color:#9489ad;font-size:.75rem;margin:28px 0 0}
+@keyframes rise{from{opacity:0;transform:translateY(9px)}to{opacity:1;transform:translateY(0)}}
+@media(max-width:600px){main{padding:28px 14px 45px}.toolbar{align-items:stretch}.controls{width:100%}.controls button{flex:1}label{justify-content:space-between;width:100%}.panel{padding:15px}#grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.card{padding:8px;border-radius:14px}.name{font-size:.78rem}.desc{font-size:.7rem}}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<main>
+  <header class="hero">
+    <div class="kicker">✦ маленькая вселенная идентичностей ✦</div>
+    <h1>Генератор гендеров</h1>
+    <p class="sub">Придумывай необычные названия, открывай новые флаги и собирай целую галерею. Здесь сотни комбинаций — от нежных и космических до совершенно абсурдных.</p>
+  </header>
+
+  <section class="toolbar" aria-label="Настройки генерации">
+    <div class="controls">
+      <button id="gen">✧ Сгенерировать</button>
+      <button id="save" class="secondary">⇩ Скачать PNG</button>
+      <button id="theme" class="secondary" title="Сменить оформление">☾ Тема</button>
+    </div>
+    <div class="controls">
+      <label>Количество
+        <select id="count"><option>12</option><option selected="">30</option><option>48</option><option>60</option><option>90</option></select>
+      </label>
+      <label>Категория
+        <select id="mode">
+          <option value="all">Всё подряд</option><option value="identity">Идентичности</option>
+          <option value="nature">Природа и космос</option><option value="fantasy">Магия и фантазия</option>
+          <option value="chaos">Абсурд</option><option value="satire">Сатира</option>
+        </select>
+      </label>
+    </div>
+  </section>
+
+  <section class="panel">
+    <div class="panel-head"><h2>♡ Гендер по дате</h2><span class="tag">персональная генерация</span></div>
+    <div class="controls">
+      <label>Дата рождения <input type="date" id="dob"></label>
+      <button id="calc">✨ Узнать результат</button>
+    </div>
+    <p class="hint">Дата используется только как ключ случайной генерации: результат не определяет настоящую идентичность.</p>
+    <div id="mine" hidden=""></div>
+  </section>
+
+  <div class="panel-head"><h2>✦ Твоя галерея</h2><span class="mini" id="counter">30 флагов</span></div>
+  <section id="grid" aria-live="polite"><article class="card"><canvas width="520" height="320" aria-label="Флаг SOAPGENDER"></canvas><div class="name">SOAPGENDER</div><p class="desc">Мыльная идентичность: яркая лаймовая и нежно-розовая полосы. Возвращение классического флага!</p><div class="card-foot"><span class="tag">Особый флаг</span><span class="mini">↻ обновить</span></div></article><article class="card"><canvas width="520" height="320" aria-label="Флаг PANDREAM"></canvas><div class="name">PANDREAM</div><p class="desc">Вымышленное определение, связанное с всеохватность и образами: сны. Можно трактовать по-своему — здесь нет строгих правил.</p><div class="card-foot"><span class="tag">Идентичность</span><span class="mini">↻ обновить</span></div></article><article class="card"><canvas width="520" height="320" aria-label="Флаг ALIAPIXEL"></canvas><div class="name">ALIAPIXEL</div><p class="desc">Вымышленное определение, связанное с особая идентичность и образами: пиксели. Можно трактовать по-своему — здесь нет строгих правил.</p><div class="card-foot"><span class="tag">Идентичность</span><span class="mini">↻ обновить</span></div></article><article class="card"><canvas width="520" height="320" aria-label="Флаг VANTAPIXEL"></canvas><div class="name">VANTAPIXEL</div><p class="desc">Вымышленное определение, связанное с темнота и образами: пиксели. Можно трактовать по-своему — здесь нет строгих правил.</p><div class="card-foot"><span class="tag">Идентичность</span><span class="mini">↻ обновить</span></div></article><article class="card"><canvas width="520" height="320" aria-label="Флаг PARADEFLUX"></canvas><div class="name">PARADEFLUX</div><p class="desc">Особенно активен в праздничные дни и под торжественную музыку.</p><div class="card-foot"><span class="tag">Сатира</span><span class="mini">↻ обновить</span></div></article><article class="card"><canvas width="520" height="320" aria-label="Флаг MISTWITCH"></canvas><div class="name">MISTWITCH</div><p class="desc">Вымышленное определение, связанное с туманность и образами: ведьмовство. Можно трактовать по-своему — здесь нет строгих правил.</p><div class="card-foot"><span class="tag">Идентичность</span><span class="mini">↻ обновить</span></div></article><article class="card"><canvas width="520" height="320" aria-label="Флаг POMOFLOREN"></canvas><div class="name">POMOFLOREN</div><p class="desc">Вымышленное определение, связанное с свобода от ярлыков и образами: цветение. Можно трактовать по-своему — здесь нет строгих правил.</p><div class="card-foot"><span class="tag">Идентичность</span><span class="mini">↻ обновить</span></div></article><article class="card"><canvas width="520" height="320" aria-label="Флаг POTATOPRONOUN"></canvas><div class="name">POTATOPRONOUN</div><p class="desc">Местоимения клубень/клубня. Урожайная идентичность.</p><div class="card-foot"><span class="tag">Абсурд</span><span class="mini">↻ обновить</span></div></article><article class="card"><canvas width="520" height="320" aria-label="Флаг MONONEBULA"></canvas><div class="name">MONONEBULA</div><p class="desc">Вымышленное определение, связанное с одно устойчивое чувство и образами: туманности. Можно трактовать по-своему — здесь нет строгих правил.</p><div class="card-foot"><span class="tag">Идентичность</span><span class="mini">↻ обновить</span></div></article><article class="card"><canvas width="520" height="320" aria-label="Флаг APORACLOUD"></canvas><div class="name">APORACLOUD</div><p class="desc">Вымышленное определение, связанное с вне привычных категорий и образами: облака. Можно трактовать по-своему — здесь нет строгих правил.</p><div class="card-foot"><span class="tag">Идентичность</span><span class="mini">↻ обновить</span></div></article><article class="card"><canvas width="520" height="320" aria-label="Флаг PANCRYSTAL"></canvas><div class="name">PANCRYSTAL</div><p class="desc">Вымышленное определение, связанное с всеохватность и образами: кристаллы. Можно трактовать по-своему — здесь нет строгих правил.</p><div class="card-foot"><span class="tag">Идентичность</span><span class="mini">↻ обновить</span></div></article><article class="card"><canvas width="520" height="320" aria-label="Флаг TELEVIZORGENDER"></canvas><div class="name">TELEVIZORGENDER</div><p class="desc">Меняется в зависимости от телепередачи и громкости диктора.</p><div class="card-foot"><span class="tag">Сатира</span><span class="mini">↻ обновить</span></div></article><article class="card"><canvas width="520" height="320" aria-label="Флаг PIGEONGENDER"></canvas><div class="name">PIGEONGENDER</div><p class="desc">Голубиная элегантность и уверенная походка по площади.</p><div class="card-foot"><span class="tag">Абсурд</span><span class="mini">↻ обновить</span></div></article><article class="card"><canvas width="520" height="320" aria-label="Флаг VANTARAIN"></canvas><div class="name">VANTARAIN</div><p class="desc">Вымышленное определение, связанное с темнота и образами: дождь. Можно трактовать по-своему — здесь нет строгих правил.</p><div class="card-foot"><span class="tag">Идентичность</span><span class="mini">↻ обновить</span></div></article><article class="card"><canvas width="520" height="320" aria-label="Флаг APORABUBBLE"></canvas><div class="name">APORABUBBLE</div><p class="desc">Вымышленное определение, связанное с вне привычных категорий и образами: пузырьки. Можно трактовать по-своему — здесь нет строгих правил.</p><div class="card-foot"><span class="tag">Идентичность</span><span class="mini">↻ обновить</span></div></article><article class="card"><canvas width="520" height="320" aria-label="Флаг SOLARFAIRY"></canvas><div class="name">SOLARFAIRY</div><p class="desc">Вымышленное определение, связанное с солнечная энергия и образами: феи. Можно трактовать по-своему — здесь нет строгих правил.</p><div class="card-foot"><span class="tag">Идентичность</span><span class="mini">↻ обновить</span></div></article><article class="card"><canvas width="520" height="320" aria-label="Флаг PANNEBULA"></canvas><div class="name">PANNEBULA</div><p class="desc">Вымышленное определение, связанное с всеохватность и образами: туманности. Можно трактовать по-своему — здесь нет строгих правил.</p><div class="card-foot"><span class="tag">Идентичность</span><span class="mini">↻ обновить</span></div></article><article class="card"><canvas width="520" height="320" aria-label="Флаг ONYXVIOLET"></canvas><div class="name">ONYXVIOLET</div><p class="desc">Вымышленное определение, связанное с глубина и образами: фиалки. Можно трактовать по-своему — здесь нет строгих правил.</p><div class="card-foot"><span class="tag">Идентичность</span><span class="mini">↻ обновить</span></div></article><article class="card"><canvas width="520" height="320" aria-label="Флаг PARACLOUD"></canvas><div class="name">PARACLOUD</div><p class="desc">Вымышленное определение, связанное с соседство категорий и образами: облака. Можно трактовать по-своему — здесь нет строгих правил.</p><div class="card-foot"><span class="tag">Идентичность</span><span class="mini">↻ обновить</span></div></article><article class="card"><canvas width="520" height="320" aria-label="Флаг HYPERANGEL"></canvas><div class="name">HYPERANGEL</div><p class="desc">Вымышленное определение, связанное с интенсивность и образами: ангельские образы. Можно трактовать по-своему — здесь нет строгих правил.</p><div class="card-foot"><span class="tag">Идентичность</span><span class="mini">↻ обновить</span></div></article><article class="card"><canvas width="520" height="320" aria-label="Флаг ANDRODREAM"></canvas><div class="name">ANDRODREAM</div><p class="desc">Вымышленное определение, связанное с андрогинность и образами: сны. Можно трактовать по-своему — здесь нет строгих правил.</p><div class="card-foot"><span class="tag">Идентичность</span><span class="mini">↻ обновить</span></div></article><article class="card"><canvas width="520" height="320" aria-label="Флаг REPORTGENDER"></canvas><div class="name">REPORTGENDER</div><p class="desc">В отчётах выглядит идеально, но в природе пока не обнаружен.</p><div class="card-foot"><span class="tag">Сатира</span><span class="mini">↻ обновить</span></div></article><article class="card"><canvas width="520" height="320" aria-label="Флаг XENOPIXEL"></canvas><div class="name">XENOPIXEL</div><p class="desc">Вымышленное определение, связанное с необычное самоощущение и образами: пиксели. Можно трактовать по-своему — здесь нет строгих правил.</p><div class="card-foot"><span class="tag">Идентичность</span><span class="mini">↻ обновить</span></div></article><article class="card"><canvas width="520" height="320" aria-label="Флаг CRYPTOCLOUD"></canvas><div class="name">CRYPTOCLOUD</div><p class="desc">Вымышленное определение, связанное с тайна и образами: облака. Можно трактовать по-своему — здесь нет строгих правил.</p><div class="card-foot"><span class="tag">Идентичность</span><span class="mini">↻ обновить</span></div></article><article class="card"><canvas width="520" height="320" aria-label="Флаг MYSTIVOID"></canvas><div class="name">MYSTIVOID</div><p class="desc">Вымышленное определение, связанное с загадочность и образами: пустота. Можно трактовать по-своему — здесь нет строгих правил.</p><div class="card-foot"><span class="tag">Идентичность</span><span class="mini">↻ обновить</span></div></article><article class="card"><canvas width="520" height="320" aria-label="Флаг GLITCHMUSHROOM"></canvas><div class="name">GLITCHMUSHROOM</div><p class="desc">Вымышленное определение, связанное с сбой привычных схем и образами: грибы. Можно трактовать по-своему — здесь нет строгих правил.</p><div class="card-foot"><span class="tag">Идентичность</span><span class="mini">↻ обновить</span></div></article><article class="card"><canvas width="520" height="320" aria-label="Флаг VANTANEBULA"></canvas><div class="name">VANTANEBULA</div><p class="desc">Вымышленное определение, связанное с темнота и образами: туманности. Можно трактовать по-своему — здесь нет строгих правил.</p><div class="card-foot"><span class="tag">Идентичность</span><span class="mini">↻ обновить</span></div></article><article class="card"><canvas width="520" height="320" aria-label="Флаг GREYFLOREN"></canvas><div class="name">GREYFLOREN</div><p class="desc">Вымышленное определение, связанное с размытость и образами: цветение. Можно трактовать по-своему — здесь нет строгих правил.</p><div class="card-foot"><span class="tag">Идентичность</span><span class="mini">↻ обновить</span></div></article><article class="card"><canvas width="520" height="320" aria-label="Флаг GLITCHBLOOM"></canvas><div class="name">GLITCHBLOOM</div><p class="desc">Вымышленное определение, связанное с сбой привычных схем и образами: цветы. Можно трактовать по-своему — здесь нет строгих правил.</p><div class="card-foot"><span class="tag">Идентичность</span><span class="mini">↻ обновить</span></div></article><article class="card"><canvas width="520" height="320" aria-label="Флаг AGENDERMERMAID"></canvas><div class="name">AGENDERMERMAID</div><p class="desc">Вымышленное определение, связанное с безгендерность и образами: русалки. Можно трактовать по-своему — здесь нет строгих правил.</p><div class="card-foot"><span class="tag">Идентичность</span><span class="mini">↻ обновить</span></div></article></section>
+  <footer>Нажми на любой флаг, чтобы заменить только его · Сделано для весёлого творчества ✿</footer>
+</main>
+<script>
+(()=>{
+"use strict";
+const W=520,H=320;
+const prefixes=[
+["AGENDER","безгендерность"],["ALIA","особая идентичность"],["APORA","вне привычных категорий"],["AUTO","личное самоощущение"],["BI","двойственность"],["CUPIO","желание близости"],["DEMI","частичная связь"],["FAUN","лесная эстетика"],["FLUX","изменчивость"],["GREY","размытость"],["INTER","пространство между"],["LITHO","самодостаточное чувство"],["META","за пределами рамок"],["MONO","одно устойчивое чувство"],["MULTI","множественность"],["NEUTRO","нейтральность"],["NEO","новое определение"],["OMNI","многообразие"],["PAN","всеохватность"],["PARA","соседство категорий"],["PERI","ощущение вокруг центра"],["POLY","несколько ощущений"],["POMO","свобода от ярлыков"],["QUEER","свобода самовыражения"],["SPECTRA","целый спектр"],["XENO","необычное самоощущение"],["NOVA","яркая индивидуальность"],["ANDRO","андрогинность"],["AETHER","эфирность"],["AERO","воздушность"],["CRYPTO","тайна"],["DREAM","сновидения"],["ECHO","отголоски"],["ECLIPSE","затмение"],["GLITCH","сбой привычных схем"],["HYPER","интенсивность"],["MIST","туманность"],["MYSTI","загадочность"],["ONYX","глубина"],["PRISM","многогранность"],["SOLAR","солнечная энергия"],["VELVET","мягкость"],["VANTA","темнота"],["WILD","свобода"]
+];
+const roots=[
+["GENDER","гендер"],["FLUX","изменчивость"],["FAE","фейская магия"],["FAUN","лес"],["FLOREN","цветение"],["MASCULINE","мужественность"],["FEMININE","женственность"],["ANDROGYNE","андрогинность"],["BOY","мальчишеская эстетика"],["GIRL","девичья эстетика"],["VOID","пустота"],["STAR","звёзды"],["LUNA","луна"],["NEBULA","туманности"],["OCEAN","океан"],["BLOOM","цветы"],["MOSS","мох"],["FROST","лёд"],["EMBER","угли"],["CLOUD","облака"],["ANGEL","ангельские образы"],["WITCH","ведьмовство"],["PIXEL","пиксели"],["DREAM","сны"],["SHADOW","тени"],["AURORA","северное сияние"],["COMET","кометы"],["MUSHROOM","грибы"],["BUBBLE","пузырьки"],["CHERRY","вишня"],["GHOST","призраки"],["CRYSTAL","кристаллы"],["RAIN","дождь"],["THUNDER","гроза"],["HONEY","мёд"],["VIOLET","фиалки"],["SPACE","космос"],["MERMAID","русалки"],["DRAGON","драконы"],["FAIRY","феи"]
+];
+const absurd=[
+["TOASTERGENDER","🍞","Гендер поджаривается до золотистой корочки и слегка нервничает."],
+["WEDNESDAYGENDER","📅","Появляется только по средам. В остальные дни не беспокоить."],
+["SOUPFLUX","🍲","Перетекает между борщом, солянкой и загадочным супом дня."],
+["WIFIGENDER","📶","Чем лучше сигнал, тем устойчивее самоощущение."],
+["SOCKFAE","🧦","Таинственно исчезает после стирки, оставляя второй носок в одиночестве."],
+["POTATOPRONOUN","🥔","Местоимения клубень/клубня. Урожайная идентичность."],
+["UMBRELLAGENDER","☂️","Раскрывается только под дождём."],
+["MICROWAVEFLUX","📡","Мигает, гудит и пищит ровно через две минуты."],
+["PIZZAGENDER","🍕","Делится на восемь частей, но остаётся одним целым."],
+["CATNAPGENDER","🐈","Проявляется после идеального кошачьего сна."],
+["PIGEONGENDER","🐦","Голубиная элегантность и уверенная походка по площади."],
+["LASAGNAGENDER","🍝","Слоистое самоощущение с сырной сердцевиной."]
+];
+const satire=[
+["TELEVIZORGENDER","📺","Меняется в зависимости от телепередачи и громкости диктора."],
+["SOFAGENDER","🛋️","Героически совершает великие дела, не покидая дивана."],
+["REPORTGENDER","📊","В отчётах выглядит идеально, но в природе пока не обнаружен."],
+["PARADEFLUX","🎖️","Особенно активен в праздничные дни и под торжественную музыку."],
+["IMPORTSUBSTITUTEGENDER","🥔","Собран из того, что нашлось в ближайшем гараже."]
+];
+const palettes=[
+["#ff8fab","#ffc2d1","#ffe5ec","#cdb4db","#a2d2ff"],["#10002b","#3c096c","#7b2cbf","#c77dff","#e0aaff"],
+["#03045e","#0077b6","#00b4d8","#90e0ef","#caf0f8"],["#283618","#606c38","#dda15e","#bc6c25","#fefae0"],
+["#ffbe0b","#fb5607","#ff006e","#8338ec","#3a86ff"],["#f1c0e8","#cfbaf0","#a3c4f3","#90dbf4","#98f5e1"],
+["#22223b","#4a4e69","#9a8c98","#c9ada7","#f2e9e4"],["#006d77","#83c5be","#edf6f9","#ffddd2","#e29578"],
+["#590d22","#800f2f","#c9184a","#ff4d6d","#ffb3c1"],["#386641","#6a994e","#a7c957","#f2e8cf","#bc4749"],
+["#5e548e","#9f86c0","#be95c4","#e0b1cb","#fbe0e8"],["#03071e","#370617","#6a040f","#d00000","#ffba08"]
+];
+const symbols=["✦","♡","☾","✿","❋","☼","◇","☆","♢","❀","☁","༄","☯","∞","⚝","☄"];
+const $=id=>document.getElementById(id);
+let items=[],seeded=null,dark=true;
+function rand(){return seeded?seeded():Math.random()}
+function pick(a){return a[Math.floor(rand()*a.length)]}
+function hash(s){let h=2166136261;for(let i=0;i<s.length;i++){h^=s.charCodeAt(i);h=Math.imul(h,16777619)}return h>>>0}
+function mulberry(a){return()=>{a|=0;a=a+0x6D2B79F5|0;let t=Math.imul(a^a>>>15,1|a);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296}}
+function generate(mode){
+ if((mode==="all"||mode==="chaos")&&rand()<.11){let a=pick(absurd);return{name:a[0],desc:a[2],symbol:a[1],type:"Абсурд"}}
+ if((mode==="all"||mode==="satire")&&rand()<.08){let a=pick(satire);return{name:a[0],desc:a[2],symbol:a[1],type:"Сатира"}}
+ let p,r;
+ if(mode==="nature"){p=pick(prefixes.filter(x=>["FAUN","AERO","MIST","SOLAR","AETHER","WILD","NOVA"].includes(x[0])));r=pick(roots.filter(x=>["OCEAN","BLOOM","MOSS","FROST","STAR","LUNA","NEBULA","AURORA","RAIN","THUNDER","MUSHROOM","CLOUD"].includes(x[0])))}
+ else if(mode==="fantasy"){p=pick(prefixes.filter(x=>["FAUN","AETHER","DREAM","MYSTI","ECLIPSE","CRYPTO","VELVET","NOVA","WILD"].includes(x[0])));r=pick(roots.filter(x=>["FAE","ANGEL","WITCH","SHADOW","MERMAID","DRAGON","FAIRY","GHOST","CRYSTAL","DREAM"].includes(x[0])))}
+ else if(mode==="identity"){p=pick(prefixes.slice(0,29));r=pick(roots.slice(0,15))}
+ else {p=pick(prefixes);r=pick(roots)}
+ let name=p[0]+r[0],desc=`Вымышленное определение, связанное с ${p[1]} и образами: ${r[1]}. Можно трактовать по-своему — здесь нет строгих правил.`;
+ if(p[0]===r[0])desc=`Необычная идентичность, связанная с ${p[1]}.`;
+ return{name,desc,type:mode==="nature"?"Природа":mode==="fantasy"?"Фантазия":"Идентичность"};
+}
+function rounded(ctx,x,y,w,h,r){ctx.beginPath();ctx.roundRect(x,y,w,h,r)}
+function drawSoap(canvas){
+ const ctx=canvas.getContext("2d");
+ ctx.clearRect(0,0,W,H);
+ ctx.fillStyle="#B6E51D";ctx.fillRect(0,0,W,H/2);
+ ctx.fillStyle="#FEAECA";ctx.fillRect(0,H/2,W,H/2);
+ ctx.strokeStyle="#ffffff88";ctx.lineWidth=3;ctx.strokeRect(2,2,W-4,H-4);
+}
+function drawFlag(canvas,item){
+ const ctx=canvas.getContext("2d"),pal=pick(palettes),n=pick([4,5,5,6,7,8]),sym=rand()<.52;
+ ctx.clearRect(0,0,W,H);
+ const bg=ctx.createLinearGradient(0,0,W,H);bg.addColorStop(0,pal[0]);bg.addColorStop(1,pal[pal.length-1]);ctx.fillStyle=bg;ctx.fillRect(0,0,W,H);
+ let colors=Array.from({length:n},(_,i)=>pal[i%pal.length]);
+ if(sym)colors=colors.map((_,i)=>pal[Math.min(i,n-1-i)%pal.length]);
+ const stripeH=H/n;
+ colors.forEach((c,i)=>{ctx.fillStyle=c;ctx.fillRect(0,Math.round(i*stripeH),W,Math.ceil(stripeH)+1)});
+ // subtle glow and decorative geometry
+ ctx.fillStyle="#ffffff12";ctx.beginPath();ctx.arc(W*.78,H*.2,95,0,Math.PI*2);ctx.fill();
+ ctx.fillStyle="#00000012";ctx.beginPath();ctx.arc(W*.16,H*.86,115,0,Math.PI*2);ctx.fill();
+ const symbol=item.symbol||pick(symbols),cx=W/2,cy=H/2;
+ ctx.save();ctx.shadowColor="#0008";ctx.shadowBlur=16;ctx.textAlign="center";ctx.textBaseline="middle";ctx.font=`${item.symbol?105:92}px Georgia,serif`;ctx.fillStyle="#fff";ctx.strokeStyle="#30233f88";ctx.lineWidth=4;ctx.strokeText(symbol,cx,cy);ctx.fillText(symbol,cx,cy);ctx.restore();
+ ctx.strokeStyle="#ffffff88";ctx.lineWidth=3;rounded(ctx,2,2,W-4,H-4,18);ctx.stroke();
+}
+function createCard(item,index){
+ const card=document.createElement("article");card.className="card";
+ const cv=document.createElement("canvas");cv.width=W;cv.height=H;cv.setAttribute("aria-label","Флаг "+item.name);drawFlag(cv,item);
+ const name=document.createElement("div");name.className="name";name.textContent=item.name;
+ const desc=document.createElement("p");desc.className="desc";desc.textContent=item.desc;
+ const foot=document.createElement("div");foot.className="card-foot";
+ const tag=document.createElement("span");tag.className="tag";tag.textContent=item.type;
+ const refresh=document.createElement("span");refresh.className="mini";refresh.textContent="↻ обновить";
+ foot.append(tag,refresh);card.append(cv,name,desc,foot);
+ cv.addEventListener("click",()=>replaceCard(card,index));refresh.addEventListener("click",()=>replaceCard(card,index));
+ return{el:card,canvas:cv,item};
+}
+function replaceCard(card,index){let item=generate($("mode").value),next=createCard(item,index);card.replaceWith(next.el);items[index]=next}
+function build(){
+ const count=Number($("count").value),mode=$("mode").value;items=[];$("grid").innerHTML="";
+ for(let i=0;i<count;i++){
+  let item=i===0?{name:"SOAPGENDER",desc:"Мыльная идентичность: яркая лаймовая и нежно-розовая полосы. Возвращение классического флага!",type:"Особый флаг"}:generate(mode);
+  let card=createCard(item,i);
+  if(i===0)drawSoap(card.canvas);
+  items.push(card);$("grid").append(card.el)
+ }
+ $("counter").textContent=`${count} флагов`;
+}
+function showMine(){
+ const date=$("dob").value,box=$("mine");box.hidden=false;box.innerHTML="";
+ if(!date){box.textContent="Сначала выбери дату рождения ✿";return}
+ const old=seeded;seeded=mulberry(hash("gender:"+date));
+ try{
+  const item=generate("all"),cv=document.createElement("canvas");cv.width=W;cv.height=H;drawFlag(cv,item);
+  const copy=document.createElement("div");copy.className="result-copy";
+  const label=document.createElement("div");label.className="tag";label.textContent="ТВОЙ СЛУЧАЙНЫЙ РЕЗУЛЬТАТ";
+  const title=document.createElement("div");title.className="name";title.textContent=item.name;
+  const desc=document.createElement("p");desc.className="desc";desc.textContent=item.desc;
+  copy.append(label,title,desc);box.append(cv,copy);
+ }finally{seeded=old}
+}
+function savePng(){
+ if(!items.length)return;
+ const cols=4,gap=28,cw=520,ch=430,rows=Math.ceil(items.length/cols);
+ const out=document.createElement("canvas");out.width=cols*cw+(cols+1)*gap;out.height=rows*ch+(rows+1)*gap;
+ const c=out.getContext("2d");c.fillStyle=dark?"#171329":"#f6f1fc";c.fillRect(0,0,out.width,out.height);
+ items.forEach((it,i)=>{let x=gap+(i%cols)*cw,y=gap+Math.floor(i/cols)*ch;c.drawImage(it.canvas,x,y,cw,ch-105);
+ c.fillStyle=dark?"#fff":"#28213a";c.font="bold 22px system-ui";c.textAlign="left";c.fillText(it.item.name,x,y+ch-68,cw-8);
+ c.fillStyle=dark?"#c9bfdc":"#665d78";c.font="15px system-ui";let words=it.item.desc.split(" "),line="",yy=y+ch-39;
+ words.forEach(w=>{let t=line?line+" "+w:w;if(c.measureText(t).width>cw-8&&line){c.fillText(line,x,yy);line=w;yy+=20}else line=t});if(line)c.fillText(line,x,yy);
+ });
+ const a=document.createElement("a");a.download="gender-galaxy.png";a.href=out.toDataURL("image/png");a.click();
+}
+$("gen").addEventListener("click",build);$("count").addEventListener("change",build);$("mode").addEventListener("change",build);$("save").addEventListener("click",savePng);$("calc").addEventListener("click",showMine);
+$("theme").addEventListener("click",()=>{
+ dark=!dark;
+ document.documentElement.classList.toggle("light-theme",!dark);
+ $("theme").textContent=dark?"☾ Тема":"☀︎ Тема";
+});
+build();
+})();
+</script>
+
+</body></html>
